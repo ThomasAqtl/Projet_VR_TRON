@@ -5,7 +5,6 @@ using UnityEngine;
 public class ControllerManager : MonoBehaviour
 {
     public KeyCode forwardKey, leftKey, rightKey;
-    public float tilt;
     private float _fwd, _lateralDirection, _right, _left;
     public const float _fwdmin = 0.3f;
     public const float _fwdmax = 1.0f;
@@ -23,6 +22,7 @@ public class ControllerManager : MonoBehaviour
     }
 
     public void FixedUpdate(){
+
         // _fwd and _lateralDirection kind of simulates default horizontal and vertical axis values
         _fwd += Input.GetKey(forwardKey) ? (_fwd < 1 ? 0.01f : 0) : (_fwd > _fwdmin ? (_fwd < 0.01f ? -_fwd : -0.01f) : 0);
         
@@ -32,5 +32,6 @@ public class ControllerManager : MonoBehaviour
         _left += Input.GetKey(leftKey)  ? (_left > -1 ? -0.1f : 0) : (_left < 0 ? (_left > 0.1f ? -_left : 0.1f) : -_left);
 
         _lateralDirection = _left + _right;
+        
     }
 }

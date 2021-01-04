@@ -121,6 +121,26 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &283687842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d06db238c6b149d4082830451828f533,
+    type: 3}
+  m_PrefabInstance: {fileID: 1240319501}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &283687843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283687842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2624dc99b6db5124d82762dbd350e887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxTiltAngle: 40
+  _tiltSpeed: 4
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,9 +554,8 @@ GameObject:
   - component: {fileID: 1726238753}
   - component: {fileID: 1726238752}
   - component: {fileID: 1726238755}
-  - component: {fileID: 1726238756}
   - component: {fileID: 1726238757}
-  - component: {fileID: 1726238751}
+  - component: {fileID: 1726238756}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -544,18 +563,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1726238751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1726238750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2b3cc807ebed344a8debd33b8b70f65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1726238752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -568,7 +575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0595c9faa3773294b98f85811a38d7e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilt: 25
+  tilt: 0
   speed: 35
   sensibility: 200
 --- !u!114 &1726238753
@@ -586,7 +593,6 @@ MonoBehaviour:
   forwardKey: 122
   leftKey: 113
   rightKey: 100
-  tilt: 5
 --- !u!4 &1726238754
 Transform:
   m_ObjectHideFlags: 0
@@ -625,7 +631,7 @@ TrailRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1726238750}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -660,7 +666,7 @@ TrailRenderer:
   m_Time: 5
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 2
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -707,7 +713,7 @@ TrailRenderer:
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
-    alignment: 0
+    alignment: 1
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
