@@ -33,7 +33,7 @@ public class TrailSegment : MonoBehaviour
 
         _block = GameObject.CreatePrimitive(PrimitiveType.Cube);
         _block.transform.localScale = new Vector3(_length, _yscale, _zscale);
-        _block.transform.position = new Vector3(transform.position.x - 2f, transform.position.y + 0.5f, transform.position.z);
+        _block.transform.position = new Vector3(transform.position.x - 2.2f, transform.position.y + 0.5f, transform.position.z) ;
 
         _renderer = _block.GetComponent<Renderer>();
         _renderer.enabled = trailVisible;
@@ -42,7 +42,7 @@ public class TrailSegment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_cm.LateralDirection == 0)
+        if (_cm.LateralDirection == 0 & transform.right == Vector3.right)
         {
             _block.transform.localScale += Vector3.right * Time.deltaTime * _mv.speed * _cm.Fwd;
             _block.transform.position += (transform.right * Time.deltaTime * _mv.speed * _cm.Fwd) / 2;
