@@ -10,33 +10,35 @@ public class TiltHandler : MonoBehaviour
     private float _tiltMultiplier;
 
     private GameObject parent;
+
+    private ControllerManager _controller;
     // Start is called before the first frame update
     void Start()
     {
         parent = GameObject.Find("Player");
-        transform.rotation.eulerAngles.Set(0f, 0f, 0f);
+        _controller = parent.GetComponent<ControllerManager>();
+
+        transform.rotation.eulerAngles.Set(0f, 0f, 0f); // ensure the moto is vertical at start
     }
 
     // Update is called once per frame
     void Update()
     {
-        _tiltMultiplier = parent.GetComponent<ControllerManager>().LateralDirection;
-        print(_tiltMultiplier);
-        print(transform.eulerAngles.x);
+        _tiltMultiplier = _controller.LateralDirection;
 
         if (_tiltMultiplier != 0){
-            if (transform.eulerAngles.x >= 360 - _maxTiltAngle ^ transform.eulerAngles.x <=_maxTiltAngle){
+            if (transform.eulerAngles.x >= 360 - _maxTiltAngle ^ transform.eulerAngles.x <= _maxTiltAngle){
                 transform.Rotate(-_tiltMultiplier, 0f, 0f);
             }
 
             // case when angles boundaries are accidentally
             else {
                 if (_tiltMultiplier > 0){
-                    transform.localEulerAngles = new Vector3(320f, 0f, 0f);
+                    transform.localEulerAngles = new Vector3(- _maxTiltAngle, 0f, 0f);
                 }
                 
                 else if (_tiltMultiplier < 0){
-                    transform.localEulerAngles = new Vector3(40f, 0f, 0f);
+                    transform.localEulerAngles = new Vector3(_maxTiltAngle, 0f, 0f);
                 }
             }
         }
