@@ -11,16 +11,18 @@ public class Player : MonoBehaviour
     }
     public bool collisionExitsGame;
     private CapsuleCollider _collider;
+    private BoxCollider _colliderBox;
     // Start is called before the first frame update
     void Start()
     {
         _collider = GetComponent<CapsuleCollider>();
+        _colliderBox = GetComponent<BoxCollider>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        print(_isGrounded);
+        //print(_isGrounded);
     }
     
     private void OnCollisionEnter(Collision collision)
@@ -28,8 +30,16 @@ public class Player : MonoBehaviour
         // to ensure collision with the ground is not considered.
         if (collision.gameObject.name == "Cube")
         {
-            print("Collision détéctée !");
-            UnityEditor.EditorApplication.isPlaying = !collisionExitsGame;
+            if (collision.collider.GetType() == typeof(BoxCollider))
+            {
+                //print("Collision avec la BOX détéctée !");
+                Physics.IgnoreCollision(this._colliderBox, collision.gameObject.GetComponent<Collider>());
+            }
+            else
+            {
+                UnityEditor.EditorApplication.isPlaying = !collisionExitsGame;
+                //print("Collision détéctée !");
+            }
         }
     }
 
