@@ -9,13 +9,13 @@ public class TiltHandler : MonoBehaviour
 
     private float _tiltMultiplier;
 
-    private GameObject parent;
+    [SerializeField] GameObject parent;
 
     private ControllerManager _controller;
     // Start is called before the first frame update
     void Start()
     {
-        parent = GameObject.Find("Player");
+        //parent = GameObject.Find("Player");
         _controller = parent.GetComponent<ControllerManager>();
 
         transform.rotation.eulerAngles.Set(0f, 0f, 0f); // ensure the moto is vertical at start

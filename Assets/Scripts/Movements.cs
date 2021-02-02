@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Movements : MonoBehaviour
 {
-    public float tilt;
+    public int tilt;
     public float speed;
     public float sensibility;
     private ControllerManager _controller;
@@ -50,27 +50,32 @@ public class Movements : MonoBehaviour
         {
             transform.Translate(Vector3.right * _controller.Fwd * speed * Time.deltaTime, Space.Self);
             transform.Rotate(Vector3.up * _controller.LateralDirection * sensibility * Time.deltaTime, Space.World);
+
+            float tiltAroundX = -tilt * _controller.LateralDirection;
+            transform.Rotate(tiltAroundX, 0, 0, Space.Self);
+            transform.eulerAngles = new Vector3(tiltAroundX, transform.eulerAngles.y, transform.eulerAngles.z);
         }
         else
         {
             if (!_forceSubie)
             {
                 _forceSubie = true;
-                StartCoroutine(Jump(Vector3.right * _controller.Fwd * speed / Time.deltaTime)); // fonction dont la boucle est indépendante de la boucle de jeu.
+                StartCoroutine(Jump(Vector3.right * _controller.Fwd * speed * 0.3f / Time.deltaTime)); // fonction dont la boucle est indépendante de la boucle de jeu.
 
                 _TEMPCOUNT++;
-                print("FORCE : "+ _TEMPCOUNT);
+                //print("FORCE : "+ _TEMPCOUNT);
             }
         }
     }
 
 
     void FixedUpdate()
-    { /*
-        float tiltAroundX = _controller.LateralDirection * -tilt;
+    { 
+        //float tiltAroundX = Mathf.Floor(_controller.LateralDirection )* -tilt;
+        //print(tiltAroundX);
+        ////Quaternion target = Quaternion.Euler(0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+        //Quaternion target = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
 
-        Quaternion target = Quaternion.Euler(tiltAroundX, 0, 0);
-
-        transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime*2f); */
+        //transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime*2f); 
     }
 }
